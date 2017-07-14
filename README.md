@@ -4,4 +4,4 @@ Aplicación realizada con Angular, Bootstrap y AngularFire2 para realizar la con
 
 ## Descripción
 
-####Aplicación realizada con Angular, Bootstrap y AngularFire2 para realizar la conexión a FireBase, pudiendo realizar guardado, edición y borrado de registros.
+###Realziado por: Miguel Ferrer
