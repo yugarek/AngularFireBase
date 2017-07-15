@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row mb-2">
+    <div class="col-6">
+      <button class="btn btn-outline-success" routerLink="/addnew"
+      >Añadir Nuevo Registro</button>
+    </div>
+    <div class="col-6">
+      <button class="btn btn-outline-danger"
+      (click)="deleteEverything()">Borrar Todos Los Registros</button>
+    </div>
+  </div><!--.row-->
+  <table class="table table-hover table-sm">
+    <thead class="">
+      <tr>
+        <th>#</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Telefono</th>
+        <th>Configuración</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items | async; index as idx">
+        <th scope="row">{{idx+1}}</th>
+        <td>{{item.nom}}</td>
+        <td>{{item.ape}}</td>
+        <td>{{item.tel}}</td>
+        <td><button  class="btn btn-outline-primary"
+          >Editar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div><!--.container-->

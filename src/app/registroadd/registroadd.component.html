@@ -1,0 +1,93 @@
+
+
+<div class="container">
+<hr><br>
+<button class="btn btn-outline-info" routerLink="/"
+>Volver Atras</button>
+
+<h1><span class="badge badge-primary">Formulario para añadir un nuevo registro!</span></h1>
+
+<div class="form-group row">
+  <label for="inputnom" class="col-sm-2 col-form-label"><b>Nombre:</b></label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="inputnom"
+            placeholder="Escribe el nombre aqui..." [(ngModel)]="newnom">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputape" class="col-sm-2 col-form-label"><b>Apellidos:</b></label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="inputape"
+            placeholder="Escribe los apellidos aqui..." [(ngModel)]="newape">
+  </div>
+</div>
+<div class="form-group row">
+  <label for="inputtel" class="col-sm-2 col-form-label"><b>Telefono:</b></label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control" id="inputtel"
+            placeholder="Escribe el telefono aqui..." [(ngModel)]="newtel">
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col-6">
+    <button class="btn btn-outline-success" data-toggle="modal" data-target="#myModal"
+    (click)="addItem(newnom,newape,newtel)">Añadir Registro</button>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-outline-warning"
+    (click)="limpiarCampos()" routerLink="/">Limpiar Campos</button>
+  </div>
+</div><!--.row-->
+
+<div class="alert alert-info" role="alert">
+  Rellene los campos vacios y presione en el boton <strong>Añadir Registro</strong>
+  para añadir un nuevo registro a la Base de Datos, en caso de error puede presionar el boton
+  <strong>Limpiar Campos</strong> para vaciar de nuevo todos los campos.
+</div>
+
+<hr><br>
+</div><!--.container-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nuevo Registro añadido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-6">
+            Nombre:
+          </div>
+          <div class="col-6">
+            {{newnom}}
+          </div>
+        </div><!--.row-->
+        <div class="row">
+          <div class="col-6">
+            Apellidos:
+          </div>
+          <div class="col-6">
+            {{newape}}
+          </div>
+        </div><!--.row-->
+        <div class="row">
+          <div class="col-6">
+            Telefono:
+          </div>
+          <div class="col-6">
+            {{newtel}}
+          </div>
+        </div><!--.row-->
+      </div><!--.modal-body-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" routerLink="/" data-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
