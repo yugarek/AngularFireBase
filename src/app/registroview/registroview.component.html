@@ -1,3 +1,4 @@
+
 <div class="container">
   <div class="row mb-2">
     <div class="col-6">
@@ -20,14 +21,27 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of items | async; index as idx">
-        <th scope="row">{{idx+1}}</th>
-        <td>{{item.nom}}</td>
-        <td>{{item.ape}}</td>
-        <td>{{item.tel}}</td>
-        <td><button  class="btn btn-outline-primary"
-          >Editar</button></td>
-      </tr>
+        <tr *ngFor="let item of items | async; index as idx">
+          <th scope="row">{{idx+1}}</th>
+          <td>
+            <span *ngIf="item.$key != llave">{{item.nom}}</span>
+            <input type="text" [(ngModel)]="newnom"
+            *ngIf="item.$key === llave" value="{{item.nom}}" class="form-control"></td>
+          <td>
+            <span *ngIf="item.$key != llave">{{item.ape}}</span>
+            <input type="text" [(ngModel)]="newape"
+            *ngIf="item.$key === llave" value="{{item.ape}}" class="form-control"></td>
+          <td>
+            <span *ngIf="item.$key != llave">{{item.tel}}</span>
+            <input type="text" [(ngModel)]="newtel"
+            *ngIf="item.$key === llave" value="{{item.tel}}" class="form-control"></td>
+          <td>
+            <button  class="btn btn-outline-primary" *ngIf="item.$key != llave"
+                      (click)="activarEditor(item.$key,item)">Editar</button>
+            <button  class="btn btn-outline-warning" *ngIf="item.$key === llave"
+                    (click)="updateItem(item.$key,newnom,newape,newtel)">Aceptar</button>
+          </td>
+        </tr>
     </tbody>
   </table>
 </div><!--.container-->

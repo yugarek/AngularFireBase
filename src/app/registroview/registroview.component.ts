@@ -14,6 +14,9 @@ export class RegistroviewComponent {
   newape:string = "";
   newtel:string = "";
 
+  show: boolean = true;
+  llave:any;
+
   constructor(public db: AngularFireDatabase) {
 
   this.items = db.list('/prueba');
@@ -35,5 +38,19 @@ export class RegistroviewComponent {
   //borrando todo
   deleteEverything() {
     this.items.remove();
+  }
+  //actualizar
+  updateItem(key: string, addNom: string, addApe: string, addTel: string) {
+  this.items.update(key, { nom: addNom,
+                    ape: addApe,
+                    tel: addTel });
+  this.llave = "";
+  }
+  //activar modo edición
+  activarEditor(key,item){
+    this.llave = key;
+    this.newnom = item.nom;
+    this.newape = item.ape;
+    this.newtel = item.tel;
   }
 }
