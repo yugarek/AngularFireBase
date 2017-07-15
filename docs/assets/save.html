@@ -1,0 +1,43 @@
+<div class="row mb-2">
+  <div class="col-xs-12 col-sm-4">
+    <input class="form-control" type="nom" [(ngModel)]="newnom" placeholder="Nombre..."/>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <input class="form-control" type="ape" [(ngModel)]="newape" placeholder="Apellidos..."/>
+  </div>
+  <div class="col-xs-12 col-sm-4">
+    <input class="form-control" type="tel" [(ngModel)]="newtel" placeholder="Telefono..."/>
+  </div>
+</div><!--.row-->
+<div class="row mb-2">
+  <div class="col-6">
+    <button class="btn btn-outline-success"
+    (click)="addItem(newnom,newape,newtel)">Añadir Nuevo Registro</button>
+  </div>
+  <div class="col-6">
+    <button class="btn btn-outline-danger"
+    (click)="deleteEverything()">Borrar Todos Los Registros</button>
+  </div>
+</div><!--.row-->
+<table class="table table-hover table-sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Nombre</th>
+      <th>Apellidos</th>
+      <th>Telefono</th>
+      <th>Borrar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items | async; index as idx">
+      <th scope="row">{{idx+1}}</th>
+      <td>{{item.nom}}</td>
+      <td>{{item.ape}}</td>
+      <td>{{item.tel}}</td>
+      <td><button  class="btn btn-outline-danger"
+        (click)="deleteItem(item.$key)">Borrar</button></td>
+    </tr>
+  </tbody>
+</table>
+</div><!--.container-->
