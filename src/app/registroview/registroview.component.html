@@ -1,15 +1,25 @@
 
 <div class="container">
   <div class="row mb-2">
-    <div class="col-6">
+    <div class="col-4">
       <button class="btn btn-outline-success" routerLink="/addnew"
       >Añadir Nuevo Registro</button>
     </div>
-    <div class="col-6">
+    <div class="col-5">
+      <button class="btn btn-outline-warning" (click)="addTwuenty()"
+      >Añadir 20 Registros de Prueba</button>
+    </div>
+    <div class="col-3">
       <button class="btn btn-outline-danger"
-      (click)="deleteEverything()">Borrar Todos Los Registros</button>
+      (click)="deleteEverything()">Borrar Todos Los Datos</button>
     </div>
   </div><!--.row-->
+  <div class="row">
+    <div class="col-12">
+      <input type="text" class="form-control mb-2" id="buscador" [(ngModel)]="try"
+              placeholder="Escribe aqui para Buscar..." (keyup)="buscador()">
+    </div>
+  </div>
   <table class="table table-hover table-sm">
     <thead class="">
       <tr>
@@ -21,7 +31,8 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of items | async; index as idx">
+      <ng-container *ngFor="let item of items | async; index as idx">
+        <tr *ngIf="item.ape.indexOf(try) >= 0 || item.nom.indexOf(try) >= 0">
           <th scope="row">{{idx+1}}</th>
           <td>
             <span *ngIf="item.$key != llave">{{item.nom}}</span>
@@ -37,11 +48,16 @@
             *ngIf="item.$key === llave" value="{{item.tel}}" class="form-control"></td>
           <td>
             <button  class="btn btn-outline-primary" *ngIf="item.$key != llave"
-                      (click)="activarEditor(item.$key,item)">Editar</button>
+                      (click)="activarEditor(item)">Editar</button>
             <button  class="btn btn-outline-warning" *ngIf="item.$key === llave"
                     (click)="updateItem(item.$key,newnom,newape,newtel)">Aceptar</button>
+            <button  class="btn btn-outline-info" *ngIf="item.$key === llave"
+                    (click)="updateCancel()">Cancelar</button>
+            <button  class="btn btn-outline-danger" *ngIf="item.$key === llave"
+                    (click)="deleteItem(item.$key)">Borrar</button>
           </td>
         </tr>
+      </ng-container>
     </tbody>
   </table>
 </div><!--.container-->
